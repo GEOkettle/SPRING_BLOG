@@ -8,24 +8,30 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
 public class BlogControllerTest {
+
 	
-	@GetMapping("/")
-	public String landingPage() {
-	
-		
-		return "<p style='font-size:2rem;font-weight:800;'>나는 쿼리를테스트 해볼 수 있는 디비 시각화 툴을 만들고 싶어</p>";
+	@GetMapping(value = "/", produces = "text/html; charset=UTF-8")
+	public  String landingPage() {
+		 
+		    return"<p style='font-size:2rem;font-weight:800;'>나는 쿼리를 테스트 해볼 수 있는 디비 시각화 툴을 만들고 싶어.<br/> 강의는 JSP로설명하는데 뷰2로 구현해보자.</p>";
 	}
-	@GetMapping("/http/lombok")
+	
+	
+	@GetMapping(value="/http/lombok", produces = "text/html; charset=UTF-8")
 	public String lombokTest() {
 		Member nm = Member.builder().email("geo@codefarm.com").password("1234").userName("geo").build();
 		System.out.println("before set id: "+nm.getId());
 		nm.setId(1);
 		System.out.println("after set id: "+nm.getId());
 		
-		return "lombok test complete";
+		
+		return "롬복테스트 컴플리트";
 	}
+	
+	
 	
 	@GetMapping("/http/get")
 	public String getTest(Member m  ) {//기본자료형 param은 @RequestParam ,member는 같은패키지에 정의한 클래스

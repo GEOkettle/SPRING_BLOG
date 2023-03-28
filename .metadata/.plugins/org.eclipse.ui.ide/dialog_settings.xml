@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<list key="installedFeatures">
+		<item value="AnyEditTools:2.7.2.202006062100"/>
+		<item value="io.emmet.eclipse:1.0.0.201401132323"/>
+		<item value="name.schedenig.eclipse.grepconsole:3.7.0"/>
 		<item value="org.eclipse.buildship:3.1.6.v20220511-1359"/>
 		<item value="org.eclipse.eclemma.feature:3.1.6.202206011447"/>
 		<item value="org.eclipse.egit.gitflow.feature:6.4.0.202211300538-r"/>
 		<item value="org.eclipse.egit:6.4.0.202211300538-r"/>
-		<item value="org.eclipse.emf.common:2.28.0.v20221121-1400"/>
-		<item value="org.eclipse.emf.ecore:2.30.0.v20221121-1400"/>
+		<item value="org.eclipse.emf.common:2.29.0.v20230223-0922"/>
+		<item value="org.eclipse.emf.ecore:2.31.0.v20230226-0921"/>
 		<item value="org.eclipse.epp.mpc:1.10.1.v20221110-1841"/>
 		<item value="org.eclipse.help:2.3.1200.v20221123-1800"/>
 		<item value="org.eclipse.jdt:3.18.1400.v20221123-1800"/>
@@ -35,9 +38,25 @@
 		<item value="org.eclipse.wst.web_ui.feature:3.28.0.v202211200019"/>
 		<item value="org.eclipse.wst.xml_ui.feature:3.28.0.v202211200019"/>
 		<item value="org.jboss.tools.m2e.wro4j.feature:1.2.1.202301111328"/>
+		<item value="org.jkiss.dbeaver.ide.feature:23.0.1.202303241844"/>
+		<item value="org.jkiss.dbeaver.runtime.feature:23.0.1.202303241844"/>
 		<item value="org.sonatype.m2e.egit.feature:0.17.0.202209271423"/>
 		<item value="org.tigris.subversion.clientadapter.svnkit.feature:1.8.12.3"/>
 		<item value="org.tigris.subversion.subclipse.graph.feature:4.2.0.1"/>
 		<item value="org.tigris.subversion.subclipse:4.3.3.202012181204"/>
 	</list>
+	<section name="org.eclipse.ui.dialogs.FilteredResourcesSelectionDialog">
+		<item key="ShowStatusLine" value="true"/>
+		<item key="History" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;History&gt;&#x0D;&#x0A;&lt;historyRootNode/&gt;&#x0D;&#x0A;&lt;/History&gt;"/>
+		<item key="ShowDerived" value="false"/>
+		<item key="FilterByLocation" value="false"/>
+		<item key="WorkingSet" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;workingSet workingSetName=&quot;&quot;/&gt;"/>
+		<section name="DialogBoundsSettings">
+			<item key="DIALOG_HEIGHT" value="500"/>
+			<item key="DIALOG_WIDTH" value="600"/>
+			<item key="DIALOG_X_ORIGIN" value="1107"/>
+			<item key="DIALOG_Y_ORIGIN" value="200"/>
+			<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
+		</section>
+	</section>
 </section>

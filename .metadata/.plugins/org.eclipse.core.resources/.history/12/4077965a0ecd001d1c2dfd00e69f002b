@@ -1,0 +1,45 @@
+package com.geo.blog.model;
+
+import java.sql.Timestamp;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Table;
+
+enum Role {
+	Admin, Manager, User
+}
+
+@Table(name= "USER")
+@Entity // class -> table create
+public class User {
+
+	@Id // pk
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // Identitiy:프로젝트에서 연결된 DB의 넘버링 전략을 따라감(mysql이면 auto oracle이면
+														// 시퀀스 //auto: auto increment
+	private int ID;
+	@Column(nullable = false, length = 20)
+	private String USERID;
+
+	@Column(nullable = false, length = 100)
+	private String PASSWORD;
+
+	@Column(nullable = false, length = 50)
+	private String EMAIL;
+
+	@Enumerated(EnumType.STRING)
+	@ColumnDefault("'USER'") // 기본값 double quote안 single quote
+	private Role ROLE; // enum
+
+	@CreationTimestamp
+	private Timestamp CREATEDAT;
+
+}

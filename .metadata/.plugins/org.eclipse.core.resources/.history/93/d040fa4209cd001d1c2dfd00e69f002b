@@ -1,0 +1,5 @@
+package com.geo.blog.model;
+
+public class User {
+
+}

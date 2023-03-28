@@ -1,0 +1,20 @@
+package com.geo.blog.model;
+
+import javax.persistence.Column;
+import javax.persistence.ConstraintMode;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+public class BoardReplyCompositeKey {
+
+
+	@ManyToOne //관계 설정: 다대일  MANY(BOARD[현재obj]) ONE(USER[mapping하려는obj])
+	@JoinColumn(name="BOARD_ID", nullable = false, foreignKey =@ForeignKey(ConstraintMode.NO_CONSTRAINT))
+	private Board boardId;
+	@Column(name="REPLY_ID")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	 private int replyId;
+}

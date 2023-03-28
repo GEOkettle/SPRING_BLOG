@@ -1,0 +1,39 @@
+package com.geo.blog.model;
+
+import java.sql.Timestamp;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
+
+public class Board {
+
+	@Column(name="ID")
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
+
+
+	@Column(name="TITLE",nullable=false,length=100)
+	private String title;
+
+
+	@Lob//대용량 데이터
+	@Column(name="CONTENT",nullable=false,length=1000)
+	private String content;
+
+
+	@Column(name="COUNT")
+	@ColumnDefault("0")
+	private int count;
+
+
+	@Column(name="CREATEDAT")
+	@CreationTimestamp
+	private Timestamp createdAt;
+}

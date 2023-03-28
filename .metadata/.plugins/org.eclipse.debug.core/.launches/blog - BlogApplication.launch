@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.springframework.ide.eclipse.boot.launch">
+    <setAttribute key="name.schedenig.eclipse.grepconsole.DisabledIds">
+        <setEntry value="0f03e7f0-7082-462f-ae84-1883904b5301"/>
+    </setAttribute>
+    <setAttribute key="name.schedenig.eclipse.grepconsole.EnabledIds"/>
+    <setAttribute key="name.schedenig.eclipse.grepconsole.FilterDisabledIds"/>
+    <setAttribute key="name.schedenig.eclipse.grepconsole.FilterEnabledIds"/>
+    <setAttribute key="name.schedenig.eclipse.grepconsole.NotificationsDisabledIds"/>
+    <setAttribute key="name.schedenig.eclipse.grepconsole.NotificationsEnabledIds"/>
+    <setAttribute key="name.schedenig.eclipse.grepconsole.StatisticsDisabledIds"/>
+    <setAttribute key="name.schedenig.eclipse.grepconsole.StatisticsEnabledIds"/>
     <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
         <listEntry value="/blog/src/main/java/com/geo/blog/BlogApplication.java"/>
     </listAttribute>
