@@ -32,7 +32,7 @@ public class Reply {
 	@MapsId("boardId")
 	@ManyToOne
 	@JoinColumns(foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT),value={
-        @JoinColumn(name = "USER_ID"),
+        @JoinColumn(name = "USR_ID"),
         @JoinColumn(name = "BOARD_ID")
     })
 	private Board boardId;

@@ -1,0 +1,61 @@
+package com.geo.blog.test;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.OptimisticLockingFailureException;
+import org.springframework.validation.BindException;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.geo.blog.model.User;
+import com.geo.blog.repository.UserRepository;
+
+@RestController
+public class DummyControllerTest {
+
+	@Autowired //의존성주입: spring이 컴포넌트 스캔할때 spring IOC가  보고
+	//UserRepository라는 인터페이스 있으면 걔 인스턴스 하나띄울게
+	private UserRepository userRepository;
+
+
+	@PostMapping(value="/test/signUp",produces = "text/html; charset=UTF-8")
+//	public String signUp(String userId,String userName,String password,String email) { or
+	public String signUp(User user) {
+
+		System.out.println("userId:  "+user.getUserId());
+		System.out.println("userName:  "+user.getUserName());
+		System.out.println("password:  "+user.getPassword());
+		System.out.println("email:  "+user.getEmail());
+		System.out.println(user.getRole());
+		if(user.getRole()== null)  user.setRole(RoleType.user);
+
+		try {
+
+			userRepository.save(user);
+
+		}catch (DataIntegrityViolationException e) {
+			// Handle constraint violation error
+		    // e.g. inform the user that their data cannot be saved because of a constraint violation
+			System.out.println("DataIntegrityViolationException occurred");
+			System.out.println(e);
+
+		} catch (OptimisticLockingFailureException e) {
+		    // Handle optimistic locking error
+		    // e.g. inform the user that their data cannot be saved because it has been updated by another user
+		    // or retry the save operation after refreshing the entity from the database
+			System.out.println("OptimisticLockingFailureException occurred");
+			System.out.println(e);
+
+		} catch (Exception e) {
+		    // Handle other database errors
+		    // e.g. inform the user that there was a problem saving their data
+		    // or retry the save operation after resolving the underlying issue
+			System.out.println("Exception occurred");
+			System.out.println(e);
+
+			return"<h2>validation error occurred";
+
+		}
+		return "<h2>sign up successfully</h2>";
+	}
+}

@@ -40,7 +40,7 @@ public class Board {
 
 	@MapsId("userId")
 	@ManyToOne(fetch=FetchType.EAGER) //관계 설정: 다대일  MANY(BOARD[현재obj]) ONE(USER[mapping하려는obj])
-	@JoinColumn(name="USER_ID", nullable = false, foreignKey =@ForeignKey(ConstraintMode.NO_CONSTRAINT))// 니 FK쓸꺼? 아니잖아
+	@JoinColumn(name="USR_ID", nullable = false, foreignKey =@ForeignKey(ConstraintMode.NO_CONSTRAINT))// 니 FK쓸꺼? 아니잖아
 	private User  userId;
 	@EmbeddedId
 	private UserBoardCompositeKey boardId;
@@ -52,8 +52,8 @@ public class Board {
 	@Column(name = "CONTENT", nullable = false, length = 1000)
 	private String content;
 
-//	@OneToMany(mappedBy = "boardId",fetch=FetchType.LAZY)
-//	private List<Reply> reply;
+	@OneToMany(mappedBy = "boardId",fetch=FetchType.EAGER)
+	private List<Reply> reply;
 
 	@Column(name = "COUNT")
 	@ColumnDefault("0")
@@ -65,7 +65,9 @@ public class Board {
 	private Timestamp createdAt;
 
 }
-
+//@ManyToOne(fetch=FetchType.EAGER) defalut eager 게시글(many)에 있어서 글쓴이는 하나(one)밖에 없으니까 다 가져와 (EAGER)
+//@OneToMany(fetch=FetchType.Lazy) default lazy  게시글(one)에 있어 댓글(many)는 여러개 있을 수 있으니까 필요할 때만 가져올게(LAZY)
+//근데 우리는 글을 들어갈때 댓글이 다 보여야되니까(view) eager전략으로 가져올게
 
 
 

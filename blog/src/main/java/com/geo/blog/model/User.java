@@ -11,6 +11,9 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicInsert;
+
+import com.geo.blog.test.RoleType;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,15 +21,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-enum Role {
-	Admin, Manager, User
-}
+
 //ORM -> OBJECT --(mapping)-->QUERY
 @Data //getter setter
 @NoArgsConstructor // default constructor
 @AllArgsConstructor // constructor with all arguments
 @Builder
 @Table(name= "USER")
+@DynamicInsert // @ColumnDefault 잡혀있는 애를 create쿼리에서 지워줌 넣고싶으면 걍 파라메터에 태우면 됨
 @Entity // class -> table create
 public class User {
 
@@ -38,13 +40,13 @@ public class User {
 
 
 	@Id // pk
-	@Column(nullable = false, length = 20,name="USER_ID")
+	@Column(nullable = false, length = 20,name="USR_ID")
 	private String userId;
 
-	@Column(nullable=false, length = 20, name="NICKNMAE")
+	@Column(nullable=false, length = 20, name="USR_NAME")
 	private  String userName;
 
-	@Column(nullable = false, length = 100,name="PASSWORD")
+	@Column(nullable = false, length = 100,name="PWD")
 	private String password;
 
 	@Column(nullable = false, length = 50,name="EMAIL")
@@ -52,8 +54,8 @@ public class User {
 
 	@Column(name="ROLE")
 	@Enumerated(EnumType.STRING)
-	@ColumnDefault("'USER'") // 기본값 double quote안 single quote
-	private Role role; // enum
+	@ColumnDefault("'user'") // 기본값 double quote안 single quote
+	private RoleType role; // enum
 
 	@Column(name="CREATEDAT")
 	@CreationTimestamp

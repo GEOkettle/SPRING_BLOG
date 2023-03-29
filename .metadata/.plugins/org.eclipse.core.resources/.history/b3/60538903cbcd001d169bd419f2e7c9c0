@@ -1,0 +1,11 @@
+package com.geo.blog.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.geo.blog.model.User;
+
+
+//자동으로 bean등록
+public interface UserRepository extends JpaRepository<User,Integer>{
+
+}

@@ -1,0 +1,81 @@
+package com.geo.blog.test;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.geo.blog.model.User;
+import com.geo.blog.repository.UserRepository;
+
+@RestController
+public class DummyControllerTest {
+
+	@Autowired //의존성주입: spring이 컴포넌트 스캔할때 spring IOC가  보고
+	//UserRepository라는 인터페이스 있으면 걔 인스턴스 하나띄울게
+	private UserRepository userRepository;
+
+	//생성
+	@PostMapping(value="/test/signUp",produces = "text/html; charset=UTF-8")
+//	public String signUp(String userId,String userName,String password,String email) { or
+	public String signUp(User user) {
+
+		System.out.println("userId:  "+user.getUserId());
+		System.out.println("userName:  "+user.getUserName());
+		System.out.println("password:  "+user.getPassword());
+		System.out.println("email:  "+user.getEmail());
+		System.out.println(user.getRole());
+		if(user.getRole()== null)  user.setRole(RoleType.user);
+
+			userRepository.save(user);
+			//에러핸들링은 좀 있따가
+
+		return "<h2>sign up successfully</h2>";
+	}
+
+	//조회
+	//{id}주소로 파라메터를 전달 받음
+	@GetMapping("/test/user/{userId}")
+	public User detail(@PathVariable String userId) {
+
+		//findById 는 찾아봤을 때 있을 수도 있고 없을 수도 있고
+		//결과를 Optional에 싸서 줄테니 null값 판단하고 처리ㄱ
+// pk int id 로할때
+//		User user = userRepository.findById(id).orElseThrow(new Supplier<IllegalArgumentException>() {
+//
+//				@Override
+//				public IllegalArgumentException get() {
+//
+//					return new IllegalArgumentException(id+"회원은 없습니다.");
+//				}
+//
+//			});
+		User user =  userRepository.findByuserId(userId);
+		//messageConverter가 지알아서 JSON으로 return
+		return user;
+	}
+
+	//ALL 조회
+	@GetMapping("/test/user/entireusers")
+	public List<User> entireUsers(){
+
+		return userRepository.findAll();
+	}
+
+	//PAGE별 조회
+	@GetMapping("/test/user/page") 			//한페이지 갯수   정렬기준                     정렬방식
+	public Page<User> pageList(@PageableDefault(size=2,sort="userId",direction=Sort.Direction.DESC)Pageable pageable){
+
+		Page<User> users = userRepository.findAll(pageable);
+
+		return users;
+	}
+
+}
