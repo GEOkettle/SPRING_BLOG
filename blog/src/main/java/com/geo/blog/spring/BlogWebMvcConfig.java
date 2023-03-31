@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
@@ -15,16 +16,23 @@ import org.springframework.web.servlet.view.JstlView;
 @EnableWebMvc
 public class BlogWebMvcConfig implements WebMvcConfigurer{
 
-	
+
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		
+
 		registry.addResourceHandler("**/").addResourceLocations("classpath:/public/");
 		System.out.println();
 
 	}
 
-	 
+	@Override
+	public void configureViewResolvers(ViewResolverRegistry registry) {
+		InternalResourceViewResolver internalResourceViewResolver = new InternalResourceViewResolver();
+		internalResourceViewResolver.setPrefix("/html/");
+	    registry.viewResolver(internalResourceViewResolver);
+	}
+
+
 	// configureViewResolvers() = @EnableWebMvc에 의한 세팅 값 + 사용자에 의한 추가 세팅
 	 @Bean
 	     ViewResolver jspViewResolver() {
@@ -34,7 +42,8 @@ public class BlogWebMvcConfig implements WebMvcConfigurer{
 	        resolver.setViewClass(JstlView.class); // Set the view class to JSTL
 	        return resolver;
 	    }
-	 
+
+
 }
 
 

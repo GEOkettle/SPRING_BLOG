@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 ,maximum-scale=1.0, minimum-scale=1.0,user-scalable=no">
+
+    <!--서버환경이 느리거나할수있어서 임포트방식대신 뷰를 직접 다운받아쓴다.  -->
+    <!-- unpkg.com cdn.jsdelivr.net 에서 다운로드  -->
+    <!-- vue.min.js (압축 파일)-->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14"></script> -->
+    <!--라이브러리 시작  -->
+    <script type="text/javascript" src="/blog/assets/js/vendor/vue/vue.js"></script>
+    <script type="text/javascript" src="/blog/assets/js/vendor/vue/vue.min.js"></script>
+    <script type="text/javascript" src="/blog/assets/js/vendor/es6-promise.auto.min.js"></script>
+    <script type="text/javascript" src="/blog/assets/js/vendor/es6-promise.min.js"></script>
+    <script type="text/javascript" src="/blog/assets/js/vendor/vue/axios.js"></script>
+    <script type="text/javascript" src="/blog/assets/js/vendor/vue/axios.min.js"></script>
+    <script type="text/javascript" src="/blog/assets/js/axios.common.js"></script>
+    <script type="text/javascript" src="/blog/assets/js/fetch.umd.js"></script>
+    <!--라이브러리 끝  -->
+    <script type="text/javascript" src="/blog/assets/js/index.js"></script>
+    <script
+  src="https://code.jquery.com/jquery-2.2.4.js"
+  integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+  crossorigin="anonymous"></script>
+
+</head>
+
+   <body>
+  <div id="app">
+
+ <h1>{{greeting}} </h1>
+	<a href="./signIn.html">로그인</a>
+	<a href="./signUp.html">가입하기</a>
+
+<div onclick="getTemplate()">템플릿가져오기 vanilla</div>
+<div @click="getTemplate()">템플릿가져오기 vhtml</div>
+<div id="myApp"></div>
+
+  <div v-html="templateHtml"></div>
+  </div>
+   </body>
+
+
+
+<!--vue start  -->
+   <script type="text/javascript">
+	 var wrapVm= new Vue({
+        el : '#app',
+        data:{
+        	greeting:"hillow VUE2, This is a landing page",
+        	templateHtml: ''
+
+        },
+        methods: {
+            getTemplate: function() {
+        	var self = this
+              var host = window.location.host;
+              var domain = "http://" + host + "/blog";
+              fetch(domain + "/html/template.html", {
+                  method: "get",
+                  headers: {
+                    "Content-Type": "file/html",
+                  }
+                })
+                .then(res => res.text())
+                .then((res) => {
+                  self.templateHtml = res;
+                  //const vnode = render.call(this);
+                 console.log( Vue.compile(self.res))
+                })
+                .catch(err => console.log(err))
+            }
+          }
+    });
+<!--vue end-->
+
+</script>
+
+<script>
+function getTemplate() {
+
+	var host= window.location.host;
+	var domain= "http://" +host+"/blog";
+		fetch(domain+"/html/template.html",{
+			method:"get",
+			headers: {
+			    "Content-Type": "file/html",
+			  }
+				})
+			.then(res=>res.text())
+			.then((res)=>{
+				var myApp = document.getElementById('myApp')
+				myApp.innerHTML= res;
+
+				//$("#myApp").html(res)
+			})
+			.catch(err => console.log(err))
+
+
+}
+</script>

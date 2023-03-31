@@ -18,18 +18,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.geo.blog.handler.CustomError;
 import com.geo.blog.model.User;
 import com.geo.blog.repository.UserRepository;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-class Error {
-
-	public String errorMessage;
-}
 
 @RestController
 public class DummyControllerTest {
@@ -39,30 +32,54 @@ public class DummyControllerTest {
 	private UserRepository userRepository;
 
 	// 생성
-	@PostMapping(value = "/test/signUp", produces = "text/html; charset=UTF-8")
+	@PostMapping(value = "/test/signUp")
 //	public String signUp(String userId,String userName,String password,String email) { or
-	public String signUp(User user) {
-
+	public Object signUp(@RequestBody User user) {
+//		System.out.println(user);
 		System.out.println("userId:  " + user.getUserId());
 		System.out.println("userName:  " + user.getUserName());
 		System.out.println("password:  " + user.getPassword());
 		System.out.println("email:  " + user.getEmail());
 		System.out.println(user.getRole());
-		if (user.getRole() == null)
-			user.setRole(RoleType.user);
+//		if (user.getRole)
+//			user.setRole(RoleType.user);
 
-		userRepository.save(user);
-		// 에러핸들링은 좀 있따가
-		
-		
 
-		return "<h2>sign up successfully</h2>";
+
+		User isExist = userRepository.findByuserId(user.getUserId());
+
+		System.out.println(isExist);
+
+		// userId 중복체크
+		if (isExist == null) {
+
+			userRepository.save(user);
+			//globalexceptionhandler로처리
+//			try {
+//
+//			}catch(Exception e) {
+//					//enum 오류는 앞에서 처리하기러하고 일단 400뜨는거 무시 ㄱㄱ
+////				System.out.println(e);
+////				Error error = new Error();
+////				error.setErrorMessage(e.getMessage());
+//				return e.getMessage();
+//			}
+		Object	newUsr = (Object) userRepository.findByuserId(user.getUserId());
+
+			return newUsr;
+		}else {
+			CustomError error = new CustomError();
+			error.setErrorMessage("Id는 중복될 수 없습니다.");
+			return error;
+		}
+
+
 	}
 
 	// 조회
 	// {id}주소로 파라메터를 전달 받음
-	@GetMapping("/test/user/{userId}")
-	public User detail(@PathVariable String userId) {
+	@GetMapping(value="/test/user/{userId}",produces = "application/json; charset=UTF-8")
+	public Object detail(@PathVariable String userId) {
 
 		// findById 는 찾아봤을 때 있을 수도 있고 없을 수도 있고
 		// 결과를 Optional에 싸서 줄테니 null값 판단하고 처리ㄱ
@@ -76,9 +93,17 @@ public class DummyControllerTest {
 //				}
 //
 //			});
-		User user = userRepository.findByuserId(userId);
+			User user = userRepository.findByuserId(userId);
+			System.out.println(user);
+
+			if(user != null) return user;
+			else {
+				CustomError error = new CustomError();
+				error.setErrorMessage(userId+" 회원이 없습니다");
+				return error;
+			}
 		// messageConverter가 지알아서 JSON으로 return
-		return user;
+
 	}
 
 	// ALL 조회
@@ -132,19 +157,19 @@ public class DummyControllerTest {
 	public List<Object> delete(@PathVariable String usrId) {
 
 		User delUsr = userRepository.findByuserId(usrId);
-		try {
-			userRepository.delete(delUsr);
-
-		} catch (Exception e) {
-			System.out.println("exception occurred");
-			System.out.println(e);
-
-			List<Object> errorList = new ArrayList<>();
-			Error error = new Error();
-			error.setErrorMessage(e.getMessage());
-			errorList.add(error);
-			return errorList;
-		}
+		userRepository.delete(delUsr);
+		//globalexcptionhandler로 처리
+//		try {
+//
+//		} catch (Exception e) {
+//			System.out.println("exception occurred");
+//			System.out.println(e);
+//
+//			List<Object> errorList = new ArrayList<>();
+//
+//			errorList.add(e.getMessage());
+//			return errorList;
+//		}
 
 		List<User> restList = userRepository.findAll();
 

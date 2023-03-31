@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>sign Up</title>
+<meta name="viewport"content="width=device-width, initial-scale=1.0 ,maximum-scale=1.0, minimum-scale=1.0,user-scalable=no">
+ <script type="text/javascript" src="/blog/assets/js/fetch.umd.js"></script>
+</head>
+
+<body>
+
+<input type="text" />
+<input type="text" />
+<button onclick="fetchTest()">selectAllUsers</button>
+
+
+</body>
+
+<script type="text/javascript">
+console.log(window.location);
+var domain = window.location.host;
+
+function fetchTest ()  {
+	fetch("http://"+domain+"/blog/test/user/entireUsers",{
+		method:"get",
+		headers: {
+		    "Content-Type": "application/json",
+		  }
+		  })
+		.then((res) => {
+			res.json()
+		})
+		.then((res)=>console.log(res))
+		.catch(err => console.log(err))
+
+}
+
+</script>

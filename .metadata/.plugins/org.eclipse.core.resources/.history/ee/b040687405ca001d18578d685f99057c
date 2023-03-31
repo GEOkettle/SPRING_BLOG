@@ -1,5 +1,0 @@
-package com.geo.blog.spring;
-
-public class WebMvcConfigure {
-
-}

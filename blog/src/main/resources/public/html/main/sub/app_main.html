@@ -1,0 +1,244 @@
+<div id="app_wrap">
+    <!-- header 배경색은 학생일때.stu, 교수일때.pro, 직원일때.mng  -->
+    <!-- //4(학생), 1,2(교수), 3(직원), 5(학사외부사용자), 9(포탈 사용자) -->
+    <header id="sub_header" :class="{'mng':session.USER_GB == '7' || session.USER_GB == '8' || session.USER_GB == '9','pro':session.USER_GB == '1' || session.USER_GB == '2' || session.USER_GB == '3','stu':session.USER_GB == '4' || session.USER_GB == '5'}">
+        <a href="#!" class="btn_menu"><span class="icon-menu"></span></a>
+        <div class="sub_title">
+          <!-- <span class="icon"></span> -->
+          <!-- <h1 class="txt"></h1> -->
+          <p class="tit">{{ menuName }}</p>
+        </div>
+        <div class="header_info" >
+          <select id="linkplus" class="size-s select-style02" style="width:auto" @change="clickLink">
+              <option selected>Quick Link</option>
+              <option :value="item.LINK_URL" v-for="(item, index) in _.filter(linkplusList.data, function(o) { return o.USE_YN=='Y'; })" @click="clickLink">{{item.LINK_NM}}</option>
+          </select>
+          <ul class="top_info notice_list">
+              <li>
+                  <a href="#!" :class="pushIljeongCount>0?'statue new':'statue'" onclick="appOpen('calendar', '02000000')"><span class="icon icon-calendar "></span><!-- {{pushIljeongCount}} --></a>
+              </li>
+              <li>
+                  <a href="#!" :class="pushNotyCount>0?'statue new':'statue'" onclick="appOpen('mypage','04010000', '')"><span class="icon icon-bell"></span><!-- {{pushNotyCount}} --></a>
+              </li>
+              <li>
+                  <a href="#!" :class="pushMsgCount>0?'statue new':'statue'" ><span class="icon icon-message-circle"></span><!-- {{pushMsgCount}} --></a>
+              </li>
+              <li class="main_user_btn">
+                <a href="#!" class="btn_logout" title="로그아웃" @click="logout"><span class="icon-log-out"></span></a>
+              </li>
+            </ul>
+      </div>
+    </header>
+    <nav id="snb">
+    </nav>
+
+    <div class="mdi_layout">
+      <div v-for="(item,idx) in mdiArr" class="mdi_list" :class="item.MENU_CD == viewMenu[viewMenu.length-1] ? 'on':''" v-if="mdiArr.length>0">
+          <a href="javascript:void(0)" @click="menuChange(item.MENU_CD)">{{item.MENU_NM}}</a>
+          <a href="javascript:void(0)" class="icon-close" @click="menuDelete(item)"></a>
+      </div>
+    </div>
+
+    <article class="sub_content">
+        <div v-if="mdi.length>0">
+            <div v-for="(item,idx) in mdi" class="sub_cont_wrap_mdi" :class="'sub_cont_wrap'+(idx+1)" v-show="item.MENU_CD == viewMenu[viewMenu.length-1]" ></div>
+        </div>
+        <div class="sub_cont_wrap"></div>
+    </article>
+
+    <a href="#!" class="btn_top">
+        <span>TOP</span>
+    </a>
+    <script id="notify" type="text/template">
+      <div class="notify <!= color !>">
+        <div class="image"><i class="<!=icon!>" style="font-size: 18px;"></i></div>
+          <div class="title"><!= title !></div>
+          <div class="message"><!= message !></div>
+        <a href="#" class="close"><i class="icon-exit"></i></a>
+      </div>
+	  </script>
+</div>
+	
+<script type="text/javascript">
+/**********************************************************	*********************************************************************************************************
+ * vue start 
+ ********************************************************************************************************************************************************************/
+var appIndexVm = new Vue({
+	el: '#app_wrap',
+	data: {
+		sessionInfo : '',
+        mdi : new Dataset(),
+        linkplusList: new Dataset(),
+        linkplusListPaging: new PagingSet(5, 100),
+        url : window.location.href,
+        app : '',
+        mdiArr : [],
+        viewMenu : [],
+        pushIljeongCount: 0,
+        pushMailCount: 0,
+        pushNotyCount: 0,
+        pushMsgCount: 0,
+        menuName: ''
+    },
+	watch: {
+        viewMenu: function(val, oldVal) {
+        },
+        'linkplusListPaging.currentPage': {
+            handler: function (val, oldVal) {
+                this.linkplusList.pageChange(val, this.linkplusListPaging.getRowCnt());
+            }
+        },
+	},
+	mounted: function(){
+
+        const url = new URL(this.url);
+
+        const urlParams = url.searchParams;
+
+        this.app = urlParams.get('app');
+
+        this.getMdiInfo();
+		this.getUserSession();
+
+        this.setLinkplusList();
+	},
+	methods: {
+		getUserSession: function(){
+			var self = this;
+			var returnVal = getSession();
+			
+			returnVal.then(function(response) {
+				self.sessionInfo = response.data;
+				self.$forceUpdate();
+			}).catch(function(error) {
+				console.error('session info set ERROR:', error);
+				return null;
+			});
+		},
+
+        getMdiInfo: function(){
+            var self = this;
+            var returnVal = systemApi.mdiInfo(false);
+
+            returnVal.then(function(response) {
+                self.mdi = response.data;
+            }).catch(function(error) {
+                console.error('MDI info set ERROR:', error);
+                return null;
+            }).finally(function () {
+            });
+        },
+
+        menuChange: function (menuCd) {
+            var self = this;
+            self.viewMenu=[];
+            self.viewMenu.push(menuCd);
+        },
+
+        menuDelete: function (menu) {
+            var self = this;
+
+            for(var i=0; i<self.mdiArr.length; i++){
+                if(self.mdiArr[i].MENU_CD == menu.MENU_CD){
+                    if(self.mdiArr.length>1){
+                        if(self.viewMenu[self.viewMenu.length-1]==self.mdiArr[i].MENU_CD){
+                            if(i==0){
+                                self.viewMenu.push(self.mdiArr[i+1].MENU_CD);
+                            }else{
+                                self.viewMenu.push(self.mdiArr[i-1].MENU_CD);
+                            }
+                        }
+                    }
+                    self.mdiArr.splice(i,1);
+                }
+            }
+            $(menu.DIV_NM).html('');
+        },
+
+        /* 링크 플러스 리스트 조회 */
+        setLinkplusList: function(){
+            var self = this;
+            var returnVal = linkplusApi.linkpluss({'ord':'Y'}, false);
+
+            returnVal.then(function(response) {
+                self.linkplusList.setRawData(response.data, self.linkplusListPaging.getRowCnt());
+
+                if(response.data.length > 0){
+                    self.linkplusListPaging.setTotalCnt(response.data.length);
+                }else{
+                    self.linkplusListPaging.setTotalCnt(0);
+                }
+            }).catch(function(error) {
+                console.error('error:', error);
+            }).finally(function(){
+            });
+        },
+        clickLink: function() {
+            window.open(document.getElementById('linkplus').value);
+        },
+
+	},
+});
+/**********************************************************	*********************************************************************************************************
+ * vue end
+ ********************************************************************************************************************************************************************/
+
+/*******************************************************************************************************************************************************************
+ * javascript start 
+ ********************************************************************************************************************************************************************/
+var globalParam = {};
+
+$(document).ready(function(){
+	try{
+		var urlInfo = window.location;
+		var appId = getParameterByName('app', urlInfo);
+		
+		changeAppInfo();
+		if(!isNull(appId)){
+			$('body').LoadingOverlay("show", true);
+		}
+	}catch(err){
+		console.log('app index.html $(document).ready() Error : '+err.message);
+		return false;
+	}
+});
+
+function changeAppInfo(){
+	try{
+		/* if(self != top){ */
+			var className = 'icon '+parent.globalAppIcon+' '+parent.globalAppColor;
+		
+			$('#sub_header .sub_title h1.txt').text(parent.globalAppNm);
+			$('#sub_header .sub_title span').attr('class',className);
+		/* } */
+	}catch(err){
+		console.log('app index.html changeAppInfo() Error : '+err.message);
+		return false;
+	}
+}
+
+$(document).ready(function() {
+    // 상단으로 이동 버튼
+    $(window).scroll(function() {
+        var bot = $(document).height() - $(window).height();
+        var height = $(document).scrollTop();
+        if (height == bot) {
+            $('.btn_top').fadeIn();
+            $('.btn_top').on('click', function() {
+                $('html').stop().animate({ scrollTop: 0 }, 100);
+            });
+        } else {
+            $('.btn_top').fadeOut();
+        }
+    });
+
+
+});
+
+
+
+
+/*******************************************************************************************************************************************************************
+ * javascript end 
+ ********************************************************************************************************************************************************************/
+</script>

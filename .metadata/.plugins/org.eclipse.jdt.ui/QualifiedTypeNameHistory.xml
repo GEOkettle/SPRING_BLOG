@@ -19,7 +19,6 @@
     <fullyQualifiedTypeName name="javax.persistence.ForeignKey"/>
     <fullyQualifiedTypeName name="javax.persistence.FetchType"/>
     <fullyQualifiedTypeName name="com.geo.blog.model.User"/>
-    <fullyQualifiedTypeName name="org.springframework.validation.BindException"/>
     <fullyQualifiedTypeName name="java.util.Optional"/>
     <fullyQualifiedTypeName name="java.util.Collection"/>
     <fullyQualifiedTypeName name="java.util.function.Supplier"/>
@@ -30,4 +29,5 @@
     <fullyQualifiedTypeName name="javax.transaction.Transactional"/>
     <fullyQualifiedTypeName name="org.hibernate.engine.internal.Collections"/>
     <fullyQualifiedTypeName name="java.util.Collections"/>
+    <fullyQualifiedTypeName name="org.springframework.validation.BindException"/>
 </qualifiedTypeNameHistroy>
