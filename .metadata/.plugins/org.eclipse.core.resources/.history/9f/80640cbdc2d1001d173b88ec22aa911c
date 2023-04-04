@@ -1,0 +1,11 @@
+package com.geo.blog.user.controller;
+
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController 
+public class UserController {
+
+	
+	@PostMapping("/api/user")
+	public ResponseDto<>
+}

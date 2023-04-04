@@ -1,0 +1,5 @@
+package com.geo.blog.controller.user;
+
+public class UserController {
+
+}

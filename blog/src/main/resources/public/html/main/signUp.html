@@ -16,7 +16,7 @@
 <button onclick="fetchTest()">selectAllUsers</button>
 
 
-<div class="loginFrame">
+<div class="signUpFrame">
  <label for="userId">아이디</label>
  <input type="text" name="userId" id="userId" />
  <label for="password">비밀번호</label>
@@ -37,7 +37,7 @@
 </body>
 
 <script type="text/javascript">
-console.log(window.location);
+
 var host= window.location.host;
 var domain= "http://" +host+"/blog";
 function fetchTest ()  {
@@ -68,7 +68,7 @@ function signUp( ) {
 			role:role
 	}
 
-	fetch(domain+"/test/signUp",{
+	fetch(domain+"/api/user/signUp",{
 		method: "post",
 		headers:{
 			"Content-Type":"application/json",
@@ -79,7 +79,7 @@ function signUp( ) {
 	.then(res=>res.json())
 	.then((res)=>{
 		console.log(res)
-		window.location.href=domain+"/html/main/signIn.html"
+		//window.location.href=domain+"/html/main/signIn.html"
 	})
 	.catch(err=>console.log(e))
 }
@@ -87,7 +87,7 @@ function signUp( ) {
 </script>
 
 <style>
-.loginFrame{
+.signUpFrame{
 	border:1px solid tomato
 }
 </style>

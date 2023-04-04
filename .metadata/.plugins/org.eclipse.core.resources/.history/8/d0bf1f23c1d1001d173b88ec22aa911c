@@ -1,0 +1,5 @@
+package com.geo.blog.service.user;
+
+public class UserService {
+
+}

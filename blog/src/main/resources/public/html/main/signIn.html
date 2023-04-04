@@ -21,7 +21,7 @@
 <label for="userId">아이디</label>
 <input type="text" name="userId" id="userId"/>
 <label for="password">비밀번호</label>
-<input type="text" name="password" id="password"/>
+<input type="password" name="password" id="password"/>
 </form>
 <button type="btn-login" onclick="signIn()">로그인</button>
 </div>
@@ -30,9 +30,33 @@
 
 
 <script>
-function signIn( ){
+var host= window.location.host;
+var domain= "http://" +host+"/blog";
+function signIn( ) {
+	var userId = document.getElementById("userId").value;
+	var password = document.getElementById("password").value;
 
 
+		var usrObj={
+			userId:userId,
+			password:password,
+
+	}
+
+	fetch(domain+"/api/user/signIn",{
+		method: "post",
+		headers:{
+			"Content-Type":"application/json",
+			"charset":"utf-8"
+		},
+		body: JSON.stringify(usrObj)
+	})
+	.then(res=>res.json())
+	.then((res)=>{
+		console.log(res)
+		//window.location.href=domain+"/html/main/signIn.html"
+	})
+	.catch(err=>console.log(e))
 }
 
 </script>
