@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>sign Up</title>
 <meta name="viewport"content="width=device-width, initial-scale=1.0 ,maximum-scale=1.0, minimum-scale=1.0,user-scalable=no">
- <script type="text/javascript" src="/blog/assets/js/fetch.umd.js"></script>
+ <script type="text/javascript" src="/assets/js/fetch.umd.js"></script>
 </head>
 
 <body>
@@ -39,7 +39,7 @@
 <script type="text/javascript">
 
 var host= window.location.host;
-var domain= "http://" +host+"/blog";
+var domain= "http://" +host;
 function fetchTest ()  {
 	fetch(domain+"/test/user/entireUsers",{
 		method:"get",
@@ -68,7 +68,7 @@ function signUp( ) {
 			role:role
 	}
 
-	fetch(domain+"/api/user/signUp",{
+	fetch(domain+"/auth/user/signUp",{
 		method: "post",
 		headers:{
 			"Content-Type":"application/json",
