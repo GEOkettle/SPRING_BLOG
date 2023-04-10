@@ -1,7 +1,11 @@
 content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="com.geo.blog.test.Member"><rhs name\="com.geo.blog.test.Member"/></lhs><lhs name\="java.lang.Enum"><rhs name\="javax.persistence.GenerationType"/><rhs name\="javax.persistence.FetchType"/></lhs></history>
 content_assist_number_of_computers=15
 eclipse.preferences.version=1
+<<<<<<< HEAD
 org.eclipse.jdt.ui.formatterprofiles.version=22
+=======
+org.eclipse.jdt.ui.formatterprofiles.version=23
+>>>>>>> cb50ba3dd93fdf2cc74ff1676c3cd4a0aa889079
 spelling_locale_initialized=true
 typefilter_migrated_2=true
 useAnnotationsPrefPage=true

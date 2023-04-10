@@ -3,7 +3,12 @@ approved.defs.file.last.changed.time=1649720987000
 configurationInstallLocation=/C\:/Users/codefarm/Downloads/sts-4.17.2.RELEASE/
 eclipse.preferences.version=1
 iconcolormode=primary
+<<<<<<< HEAD
 last.download.attempt.time=1681084791454
 lastConfiguration=1681084760361
+=======
+last.download.attempt.time=1680912860077
+lastConfiguration=1680912850427
+>>>>>>> cb50ba3dd93fdf2cc74ff1676c3cd4a0aa889079
 newinstall=true
 workbench.theme=Dark Gray

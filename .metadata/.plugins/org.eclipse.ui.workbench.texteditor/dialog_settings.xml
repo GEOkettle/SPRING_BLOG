@@ -1,21 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+<<<<<<< HEAD
 		<item key="selection" value="security"/>
+=======
+		<item key="selection" value="blog"/>
+>>>>>>> cb50ba3dd93fdf2cc74ff1676c3cd4a0aa889079
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<item key="wrap" value="true"/>
 		<item key="incremental" value="false"/>
 		<list key="findhistory">
+<<<<<<< HEAD
 			<item value="security"/>
 			<item value="maven"/>
 			<item value="console.log"/>
+=======
+			<item value="blog"/>
+			<item value="b"/>
+>>>>>>> cb50ba3dd93fdf2cc74ff1676c3cd4a0aa889079
 			<item value="appOpen"/>
 			<item value="appHtmlOpen"/>
 			<item value="RegExp"/>
 			<item value="returnUrl"/>
 			<item value="save"/>
+<<<<<<< HEAD
+=======
+			<item value="userRepository"/>
+>>>>>>> cb50ba3dd93fdf2cc74ff1676c3cd4a0aa889079
 		</list>
 		<list key="replacehistory">
 		</list>

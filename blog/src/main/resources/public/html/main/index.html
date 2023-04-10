@@ -12,17 +12,17 @@
     <!-- vue.min.js (압축 파일)-->
     <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14"></script> -->
     <!--라이브러리 시작  -->
-    <script type="text/javascript" src="/blog/assets/js/vendor/vue/vue.js"></script>
-    <script type="text/javascript" src="/blog/assets/js/vendor/vue/vue.min.js"></script>
-    <script type="text/javascript" src="/blog/assets/js/vendor/es6-promise.auto.min.js"></script>
-    <script type="text/javascript" src="/blog/assets/js/vendor/es6-promise.min.js"></script>
-    <script type="text/javascript" src="/blog/assets/js/vendor/vue/axios.js"></script>
-    <script type="text/javascript" src="/blog/assets/js/vendor/vue/axios.min.js"></script>
-    <script type="text/javascript" src="/blog/assets/js/axios.common.js"></script>
-    <script type="text/javascript" src="/blog/assets/js/fetch.umd.js"></script>
-    <script type="text/javascript" src="/blog/assets/js/vendor/jquery.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/assets/js/vendor/vue/vue.js"></script>
+    <script type="text/javascript" src="/assets/js/vendor/vue/vue.min.js"></script>
+    <script type="text/javascript" src="/assets/js/vendor/es6-promise.auto.min.js"></script>
+    <script type="text/javascript" src="/assets/js/vendor/es6-promise.min.js"></script>
+    <script type="text/javascript" src="/assets/js/vendor/vue/axios.js"></script>
+    <script type="text/javascript" src="/assets/js/vendor/vue/axios.min.js"></script>
+    <script type="text/javascript" src="/assets/js/axios.common.js"></script>
+    <script type="text/javascript" src="/assets/js/fetch.umd.js"></script>
+    <script type="text/javascript" src="/assets/js/vendor/jquery.min.js" crossorigin="anonymous"></script>
     <!--라이브러리 끝  -->
-    <script type="text/javascript" src="/blog/assets/js/index.js"></script>
+    <script type="text/javascript" src="/assets/js/index.js"></script>
 
 
 </head>
@@ -65,7 +65,7 @@
 function getTemplate() {
 
 	var host= window.location.host;
-	var domain= "http://" +host+"/blog";
+	var domain= "http://" +host;
 		fetch(domain+"/html/template.html",{
 			method:"get",
 			headers: {

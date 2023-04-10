@@ -17,7 +17,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
- 	@PostMapping("/api/user/signUp")
+ 	@PostMapping("/auth/user/signUp")
 	public ResponseDto<String> save(@RequestBody User user) {
 		System.out.println("UserController : save 호출");
 		ResponseDto<String> result = userService.signUp(user);
@@ -26,10 +26,12 @@ public class UserController {
 
 	}
 
- 	@PostMapping("/api/user/signIn")
+ 	@PostMapping("/auth/user/signIn")
  	public ResponseDto<String> signIn(@RequestBody User user){
  		ResponseDto<String> result = userService.signIn(user);
-
+ 		
+ 		System.out.println(result);
+ 		System.out.println(user);
  		return result;
 
  	}
