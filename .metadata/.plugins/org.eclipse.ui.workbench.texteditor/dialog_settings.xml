@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="vm"/>
+		<item key="selection" value="security"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<item key="wrap" value="true"/>
 		<item key="incremental" value="false"/>
 		<list key="findhistory">
+			<item value="security"/>
+			<item value="maven"/>
+			<item value="console.log"/>
 			<item value="appOpen"/>
 			<item value="appHtmlOpen"/>
 			<item value="RegExp"/>
 			<item value="returnUrl"/>
 			<item value="save"/>
-			<item value="userRepository"/>
-			<item value="utf"/>
-			<item value="security"/>
 		</list>
 		<list key="replacehistory">
 		</list>
