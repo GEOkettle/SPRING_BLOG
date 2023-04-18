@@ -1,43 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-<<<<<<< HEAD
-		<item key="selection" value="security"/>
-=======
-		<item key="selection" value="blog"/>
->>>>>>> cb50ba3dd93fdf2cc74ff1676c3cd4a0aa889079
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="wrap" value="true"/>
-		<item key="incremental" value="false"/>
 		<list key="findhistory">
-<<<<<<< HEAD
-			<item value="security"/>
-			<item value="maven"/>
-			<item value="console.log"/>
-=======
-			<item value="blog"/>
-			<item value="b"/>
->>>>>>> cb50ba3dd93fdf2cc74ff1676c3cd4a0aa889079
-			<item value="appOpen"/>
-			<item value="appHtmlOpen"/>
-			<item value="RegExp"/>
-			<item value="returnUrl"/>
-			<item value="save"/>
-<<<<<<< HEAD
-=======
-			<item value="userRepository"/>
->>>>>>> cb50ba3dd93fdf2cc74ff1676c3cd4a0aa889079
+			<item value="&#x09;&#x09;ServletRequestAttributes servletContainer = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();"/>
 		</list>
 		<list key="replacehistory">
 		</list>
-	</section>
-	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="807"/>
-		<item key="DIALOG_Y_ORIGIN" value="264"/>
-		<item key="DIALOG_WIDTH" value="322"/>
-		<item key="DIALOG_HEIGHT" value="391"/>
-		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
 	</section>
 </section>

@@ -1,20 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="NewWizardAction">
-<<<<<<< HEAD
-		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.eclipse.jdt.ui.wizards.NewPackageCreationWizard"/>
-=======
 		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.eclipse.jdt.ui.wizards.NewClassCreationWizard"/>
->>>>>>> cb50ba3dd93fdf2cc74ff1676c3cd4a0aa889079
 		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
 			<item value="org.eclipse.jdt.ui.java"/>
 		</list>
-	</section>
-	<section name="InstallationDialogSettings">
-		<item key="DIALOG_X_ORIGIN" value="18"/>
-		<item key="DIALOG_Y_ORIGIN" value="-336"/>
-		<item key="DIALOG_WIDTH" value="698"/>
-		<item key="DIALOG_HEIGHT" value="735"/>
-		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
 	</section>
 </section>

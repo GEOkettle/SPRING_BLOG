@@ -17,7 +17,7 @@
 각 앱마다 어떻게 vue가 적용되는지 index.js 참고해서 ㄱㄱ
 
 <div class="singInFrame">
-<form action="">
+<form action="/auth/user/signIn" id="loginFrame" method="post">
 <label for="userId">아이디</label>
 <input type="text" name="userId" id="userId"/>
 <label for="password">비밀번호</label>
@@ -33,9 +33,9 @@
 var host= window.location.host;
 var domain= "http://" +host;
 function signIn( ) {
-	var userId = document.getElementById("userId").value;
-	var password = document.getElementById("password").value;
-
+var userId = document.getElementById("userId").value;
+var password = document.getElementById("password").value;
+var loginFrame = document.getElementById("loginFrame")
 
 		var usrObj={
 			userId:userId,
@@ -43,7 +43,17 @@ function signIn( ) {
 
 	}
 
-	fetch(domain+"/auth/user/signIn",{
+		//아이디 비번에 공백없으면 로그인 프로세스를 타야지
+		//암호화는 생각하지말고 일단 폼만 submit시켜서 (/login을 타게하자)
+		if(loginValid()){
+			console.log("loginValid")
+			loginFrame.submit();
+		}
+		//여기로 보내면 안되거
+		//loginprocessurl로 등록된 애한테 태워야되는데
+		//어차피 나중에 암호화 할꺼니까 폼의 버튼으로 submit하는게 아니라
+		//함수로 받은 다음에 폼을 js로 submit , 나중에 암호화 할때 함수 안에서 바로 처리해버리게
+	/* fetch(domain+"/auth/user/signIn",{
 		method: "post",
 		headers:{
 			"Content-Type":"application/json",
@@ -56,9 +66,31 @@ function signIn( ) {
 		console.log(res)
 		//window.location.href=domain+"/html/main/signIn.html"
 	})
-	.catch(err=>console.log(e))
+	.catch(err=>console.log(err)) */
 }
+function loginValid (){
+	var idInput = document.getElementById("userId")
+	var pwInput= document.getElementById("password")
+	var userId = idInput.value;
+	var password = pwInput.value;
+	userId = userId.trim()
+	password = password.trim()
+	var regex = / /gi;
+	userId= userId.replace(regex, '');  // 'abcde'
+	password = password.replace(regex, '');  // 'abcde'
+ 	if(userId ==''){
+ 		alert("아이디를 정확히 입력해 주세여")
+ 		idInput.focus();
+ 		return false;
+ 	}
+	if(password==''){
+		alert("비밀번호를 정확히 입력해 주세여")
+		pwInput.focus();
+		return false;
+	}
 
+	return true;
+}
 </script>
 <style>
 

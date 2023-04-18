@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 
 @RestController
@@ -14,9 +15,9 @@ public class BlogControllerTest {
 
 
 	@GetMapping(value = "/", produces = "text/html; charset=UTF-8")
-	public  String landingPage() {
-
-		    return"index.html";
+	public  ModelAndView landingPage() {
+			ModelAndView landingPage = new ModelAndView("redirect:/index.html");
+		    return landingPage;
 	}
 
 

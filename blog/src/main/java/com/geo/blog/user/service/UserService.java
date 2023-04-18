@@ -38,25 +38,25 @@ public class UserService {
 
 
 	}
-		@Transactional(readOnly = true)// select할 시 트랜잭션 시작, 서비스 종료 시 종료(정합성유지)
-		public ResponseDto<String> signIn(User user) {
-
-//			User returnUsr = userRepository.findByUserIdAndPassword(user.getUserId(), user.getPassword());
-			User returnUsr = userRepository.signIn(user.getUserId(), user.getPassword());
-			System.out.println(returnUsr);
-			ResponseDto<String> result = new ResponseDto<String>();
-
-			if(returnUsr != null) {
-				result.setStatus(HttpStatus.OK.value());
-				 result.setData("sign in successfully");
-			}else {
-				result.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
-				result.setData("confirm your ID or password ");
-
-			}
-
-			return result;
-		}
+//		@Transactional(readOnly = true)// select할 시 트랜잭션 시작, 서비스 종료 시 종료(정합성유지)
+//		public ResponseDto<String> signIn(User user) {
+//
+////			User returnUsr = userRepository.findByUserIdAndPassword(user.getUserId(), user.getPassword());
+//			User returnUsr = userRepository.signIn(user.getUserId(), user.getPassword());
+//			System.out.println(returnUsr);
+//			ResponseDto<String> result = new ResponseDto<String>();
+//
+//			if(returnUsr != null) {
+//				result.setStatus(HttpStatus.OK.value());
+//				 result.setData("sign in successfully");
+//			}else {
+//				result.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+//				result.setData("confirm your ID or password ");
+//
+//			}
+//
+//			return result;
+//		}
 
 
 }

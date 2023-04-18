@@ -32,4 +32,6 @@
     <fullyQualifiedTypeName name="com.geo.blog.model.User"/>
     <fullyQualifiedTypeName name="org.springframework.http.HttpStatus"/>
     <fullyQualifiedTypeName name="org.springframework.transaction.annotation.Transactional"/>
+    <fullyQualifiedTypeName name="org.springframework.security.core.AuthenticationException"/>
+    <fullyQualifiedTypeName name="org.springframework.security.core.Authentication"/>
 </qualifiedTypeNameHistroy>

@@ -26,13 +26,13 @@ public class UserController {
 
 	}
 
- 	@PostMapping("/auth/user/signIn")
- 	public ResponseDto<String> signIn(@RequestBody User user){
- 		ResponseDto<String> result = userService.signIn(user);
- 		
- 		System.out.println(result);
- 		System.out.println(user);
- 		return result;
-
- 	}
+// 	@PostMapping("/auth/user/signIn")
+// 	public ResponseDto<String> signIn(@RequestBody User user){
+// 		ResponseDto<String> result = userService.signIn(user);
+//
+// 		System.out.println(result);
+// 		System.out.println(user);
+// 		return result;
+//
+// 	}
 }
